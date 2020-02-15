@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>text_flask_show</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    
+</head>
+
+
+ <script>
+    function myFunction() {
+                  var text1= $('#text1').val();
+                  var text2= $('#text2').val();
+                  $.ajax({
+                          url: "/join",
+                          type: "POST",
+                          data: {text1:text1,text2:text2}
+                        }).done(function(response) {
+                                        var html= " The final RESULT is :  ";
+                                        response =response.result;
+                                        $.each(response,function(key,val){
+                                                              console.log(val);
+                                                              html +=val+"<br>"
+                                                              // html+="<p>"+val+"<p>"
+                                                               });
+                                            $(".show-data").append(html);
+                                      });
+                };
+
+  </script>
+
+
+
+
+
+<body>
+
+    <h1>Test Form1</h1>
+    <h2>xiaowen kang</h2>
+      <p> Input data:<br><br>
+            text1 :<input type="text" id="text1" name="text1"><br><br>
+            text2:<input type="text" id="text2" name="text2"><br><br>
+            <button id="clicked" onclick="myFunction()">Submit</button>
+      </p>
+      <div class="show-data" ></div>
+
+      <script src="//web.archive.org/web/20160418220302js_/http://d3js.org/d3.v3.min.js"></script>
+      <!-- <script src="scripts/main.js"></script> -->
+
+</body>
+
+</html>
